@@ -41,4 +41,12 @@ public class ContactHelper extends HelperBase {
     public void acceptDeletion(){
         wd.switchTo().alert().accept();
     }
+
+    public void modifySelectedContact() {
+        click(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public void submitContactModification() {
+        click(By.name("update"));
+    }
 }
