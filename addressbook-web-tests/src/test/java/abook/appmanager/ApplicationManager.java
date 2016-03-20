@@ -29,22 +29,10 @@ public class ApplicationManager {
         sessionHelper.login("admin", "secret");
     }
 
-    public void gotoContactCreationPage() {
-        wd.findElement(By.linkText("add new")).click();
-    }
-
     public void stop() {
         wd.quit();
     }
 
-    public static boolean isAlertPresent(FirefoxDriver wd) {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
 
     public GroupHelper getGroupHelper() {
         return groupHelper;
