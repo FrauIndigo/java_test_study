@@ -2,8 +2,11 @@ package abook.appmanager;
 
 import abook.model.ContactData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 /**
  * Created by админ1 on 20.03.2016.
@@ -19,7 +22,7 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//input[@type='submit']"));
     }
 
-    public void fillContactInfo(ContactData contactData) {
+    public void fillContactInfo(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("middlename"), contactData.getMiddleName());
         type(By.name("lastname"), contactData.getLastName());
@@ -29,6 +32,13 @@ public class ContactHelper extends HelperBase {
         type(By.name("home"), contactData.getHomeTelNumber());
         type(By.name("mobile"), contactData.getMobileTelNumber());
         type(By.name("email"), contactData.getEmail());
+
+        if (creation){
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        } else{
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
+
     }
 
     public void selectContact() {
