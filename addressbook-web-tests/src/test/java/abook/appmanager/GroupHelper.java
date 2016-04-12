@@ -61,4 +61,8 @@ public class GroupHelper extends HelperBase{
     public boolean isThereAGroup() {
        return isElementPresent(By.name("selected[]"));
     }
+    public boolean isThereTheGroup(String groupName){
+
+        return isElementPresent(By.name("selected[]")) && wd.findElement(By.name("selected[]")).getAttribute("title").contains(groupName);
+    }
 }
