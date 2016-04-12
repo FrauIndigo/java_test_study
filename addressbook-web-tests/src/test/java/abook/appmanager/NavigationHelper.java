@@ -14,13 +14,23 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void gotoGroupPage() {
+        if (isElementPresent(By.tagName("h1")) && wd.findElement(By.tagName("h1")).getText().equals("Groups") &&
+                isElementPresent(By.name("new"))){
+            return;
+        }
         click(By.linkText("groups"));
     }
 
     public void gotoContactsList(){
+        if (isElementPresent(By.id("maintable")) ){
+            return;
+        }
         click(By.linkText("home"));
     }
     public void gotoContactCreationPage() {
+        if (isElementPresent(By.tagName("h1"))&& wd.findElement(By.tagName("h1")).getText().contains("add address book entry")){
+            return;
+        }
         wd.findElement(By.linkText("add new")).click();
     }
 }
